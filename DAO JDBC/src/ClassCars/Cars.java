@@ -112,13 +112,17 @@ public class Cars implements Car {
             ResultSet set = statement.executeQuery("SELECT * from car");
 
 
-            String resultString = new String();
+
 
             while (set.next()){
+                String resultString = new String();
+
                 resultString += set.getInt(1) + " ";
                 resultString += set.getString(2) + " ";
-                resultString += set.getString(3);
-                
+                resultString += set.getInt(3) + " ";
+                resultString += set.getString(4);
+
+                lst.add(resultString);
             }
 
 

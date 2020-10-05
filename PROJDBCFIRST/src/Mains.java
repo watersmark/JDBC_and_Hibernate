@@ -1,7 +1,5 @@
 //import java.sql.*;
 
-import com.mysql.cj.jdbc.ConnectionImpl;
-
 import java.sql.*;
 
 
@@ -14,6 +12,9 @@ public class Mains {
     private static final String str = "INSERT INTO users(firstName, lastname)" +
             "values(?, ?)";
 
+    private static final String str1 = "Select * from users where lastname = ?";
+
+    private static final String str2 = "delete from users where id = ?";
 
 
     public static void main(String[] args) {
@@ -21,20 +22,22 @@ public class Mains {
         if(testConnect()){
 
             try {
+
                 Connection connect = DriverManager.getConnection(url, name, pass);
-                PreparedStatement st1 = connect.prepareStatement(str);
-                Statement st2 = connect.createStatement();
+                PreparedStatement statement1 = connect.prepareStatement(str2);
+                Statement insSt = connect.createStatement();
 
 
-                st1.setString(1,"Tolanka");
-                st1.setString(2, "Kolanka");
+
+                insSt.execute("Select * from users");
+                //System.out.println(res);
 
 
-                st1.execute();
 
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }
